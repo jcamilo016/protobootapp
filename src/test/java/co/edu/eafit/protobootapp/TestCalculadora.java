@@ -30,7 +30,7 @@ public class TestCalculadora {
         Calculadora calc = new Calculadora();
         assertEquals(16.0, calc.cuadrado(-4.0), 0);
     }
-    
+
     //Pruebas unitarias para el cubo
     @Test
     public void testCuboPositivo() {
@@ -49,7 +49,7 @@ public class TestCalculadora {
         Calculadora calc = new Calculadora();
         assertEquals(1.0, calc.cubo(1.0), 0);
     }
-    
+
     @Test
     public void testCuboMenosUno() {
         Calculadora calc = new Calculadora();
@@ -60,5 +60,11 @@ public class TestCalculadora {
     public void testCuboNegativo() {
         Calculadora calc = new Calculadora();
         assertEquals(-64.0, calc.cubo(-4.0), 0);
+    }
+
+    @Test
+    public void testExponencial() {
+        Calculadora calc = new Calculadora();
+        assertEquals(16, calc.exponential(2.0,4), 0);
     }
 }

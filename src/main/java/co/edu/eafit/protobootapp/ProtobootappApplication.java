@@ -1,5 +1,6 @@
 package co.edu.eafit.protobootapp;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProtobootappApplication {
 
+    @Autowired
     Calculadora calculadora;
     
     public static void main(String[] args) {
@@ -33,14 +35,18 @@ public class ProtobootappApplication {
     //Se ejecuta con http://localhost:8080/cuadrado o http://localhost:8080/cuadrado?numero=5
     @GetMapping("/cuadrado")
     public String cuadrado(@RequestParam(value = "numero", defaultValue = "0") Double numero) {
-        this.calculadora = new Calculadora();
-        return String.format("El cuadrado de %f es %f", numero, this.calculadora.cuadrado(numero));
+        return String.format("El cuadrado de %f es %f", numero, calculadora.cuadrado(numero));
     }
     
     //Se ejecuta con http://localhost:8080/cubo o http://localhost:8080/cubo?numero=5
     @GetMapping("/cubo")
     public String cubo(@RequestParam(value = "numero", defaultValue = "0") Double numero) {
-        this.calculadora = new Calculadora();
-        return String.format("El cubo de %f es %f", numero, this.calculadora.cubo(numero));
+        return String.format("El cubo de %f es %f", numero, calculadora.cubo(numero));
+    }
+
+    @GetMapping("/exponencial")
+    public String exponential(@RequestParam(value = "numero", defaultValue = "0") Double numero,
+                              @RequestParam(value = "exponencial", defaultValue = "1") int exponencial) {
+        return String.format("El exponencial de %f es %f", numero, calculadora.exponential(numero, exponencial));
     }
 }
